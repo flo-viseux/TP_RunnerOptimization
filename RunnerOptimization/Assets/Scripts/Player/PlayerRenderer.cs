@@ -8,32 +8,43 @@ public class PlayerRenderer : MonoBehaviour
     private static int jumpHash = Animator.StringToHash("jump");
     private static int hitHash = Animator.StringToHash("hit");
     private static int faintHash = Animator.StringToHash("faint");
-    private static int onGroundHash = Animator.StringToHash("onGround");
+    private static int landHash = Animator.StringToHash("land");
     #endregion
 
     #region SerializedFields
     [SerializeField] private Animator animator;
     #endregion
 
-    #region API
-    public void Jump()
+    #region UnityMethods
+    private void Start()
     {
+        PlayerController._onHit += Hit;
+        PlayerController._onJump += Jump;
+        PlayerController._onGameOver += Faint;
+        PlayerController._onLand += Land;
+    }
+    #endregion
+
+    #region Private
+    private void Jump()
+    {
+        animator.ResetTrigger(landHash);
         animator.SetTrigger(jumpHash);
     }
 
-    public void Hit()
+    private void Hit()
     {
         animator.SetTrigger(hitHash);
     }
 
-    public void Faint()
+    private void Faint()
     {
         animator.SetTrigger(faintHash);
     }
 
-    public void SetIsGrounded(bool IsGrounded)
+    private void Land()
     {
-        animator.SetBool(onGroundHash, IsGrounded);
+        animator.SetTrigger(landHash);
     }
     #endregion
 }

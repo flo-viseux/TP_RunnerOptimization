@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerInputs : MonoBehaviour
 {
@@ -9,9 +8,9 @@ public class PlayerInputs : MonoBehaviour
 
     public static OnJump _onJump;
 
-    public void Jump()
+    public void Jump(CallbackContext cbx)
     {
-        if (_onJump != null)
+        if (cbx.performed && _onJump != null)
             _onJump.Invoke();
     }
     #endregion
