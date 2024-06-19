@@ -1,29 +1,17 @@
+using Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public partial class ObstacleManager : MonoBehaviour
+public partial class ObstacleManager : Singleton<ObstacleManager>   
 {
-    public static ObstacleManager Instance;
-    private void Awake()
-    {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-            Debug.LogError($"There is already an instance of {this.GetType()}.");
-        }
-    }
-
     [SerializeField] private float _ObstacleSpawnPosX;
     public float ObstacleSpawnPosX { get => _ObstacleSpawnPosX; set => _ObstacleSpawnPosX = value; }
 
     //ObstacleSpeed
+    [Header("Obstacle Speed")]
     [Tooltip("The base speed that is always applied, non dependant of time")]
     [SerializeField] private float _ObstacleBaseSpeed = 3;
     [Tooltip("The multiplier of the evolution curve on time")]
@@ -36,6 +24,7 @@ public partial class ObstacleManager : MonoBehaviour
     public float ObstacleSpeed { get => _ObstacleSpeed; set => _ObstacleSpeed = value; }
 
 
+    [Space(30)]    [Header("Obstacle Spawn Rate")]
     //Obstacle Spawn Frequency
     [Tooltip("The base spawn rate that is multiplied by the evolution curve evaluation")]
     [SerializeField] private float _ObstacleBaseSpawnTimer = 3;
@@ -45,6 +34,7 @@ public partial class ObstacleManager : MonoBehaviour
     [SerializeField] private float _TimeToReachMinSpawnTimer = 200;
     private float _ObstacleSpawnTimer;
 
+    [Space(30)]    [Header("Pooling System")]
     //Pooling 
     [SerializeField] private List<ObstaclePoolElement> _ObstaclePoolElements;
     [SerializeField] private Transform _PoolFolder;

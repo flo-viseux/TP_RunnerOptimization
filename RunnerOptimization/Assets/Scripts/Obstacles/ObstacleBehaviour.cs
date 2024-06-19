@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Managers; 
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class ObstacleBehaviour : MonoBehaviour

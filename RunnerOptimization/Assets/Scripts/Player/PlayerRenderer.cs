@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Managers;
 public class PlayerRenderer : MonoBehaviour
 {
     #region Constants
@@ -18,6 +18,7 @@ public class PlayerRenderer : MonoBehaviour
     #region UnityMethods
     private void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         PlayerController._onHit += Hit;
         PlayerController._onJump += Jump;
         PlayerController._onGameOver += Faint;

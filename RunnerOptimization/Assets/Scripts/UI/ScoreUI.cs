@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
-
+using Managers;
 public class ScoreUI : MonoBehaviour
 {
     #region SerializedFields
