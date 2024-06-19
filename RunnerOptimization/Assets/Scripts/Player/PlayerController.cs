@@ -20,12 +20,16 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Vector2 offset = Vector2.zero;
     [SerializeField] private float distance = 0.1f;
+    [SerializeField] private LayerMask layerMask;
+    #endregion
+
+    #region Attributes
+    private bool isGrounded = true;
+    private bool isJumping = true;
     #endregion
 
     #region API
-    public PlayerController Instance = null;
-
-    public bool IsGrounded = true;
+    public static PlayerController Instance = null;
 
     public void Hit()
     {
@@ -35,38 +39,47 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region UnityMethods
-    private void Awake()
+    private void Start()
     {
+        transform.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x + 2, transform.position.y, 0); // Set Player Pos with Camera
+
         PlayerInputs._onJump += Jump;
-        IsGrounded = true;
+        SetIsGrounded(true);
     }
 
     private void FixedUpdate()
     {
-        if (!IsGrounded && Physics.Raycast((Vector2)transform.position + offset, Vector3.down, distance))
+        if (!isGrounded && Physics2D.Raycast((Vector2)transform.position + offset, Vector2.down, distance, layerMask))
             SetIsGrounded(true);
-        else if (IsGrounded && !Physics.Raycast((Vector2)transform.position + offset, Vector3.down, distance))
+        else if (isGrounded && !Physics2D.Raycast((Vector2)transform.position + offset, Vector2.down, distance, layerMask))
             SetIsGrounded(false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay((Vector2)transform.position + offset, Vector2.down * distance);
     }
     #endregion
 
     #region Private
-    private void SetIsGrounded(bool isGrounded)
+    private void SetIsGrounded(bool IsGrounded)
     {
-        IsGrounded = isGrounded;
+        this.isGrounded = IsGrounded;
+        renderer.SetIsGrounded(this.isGrounded);
 
+        if (IsGrounded)
+            isJumping = false;
     }
 
     private void Jump()
     {
-        RaycastHit hit = new RaycastHit();
+        if (!isGrounded || isJumping)
+            return;
 
-        if (Physics.Raycast((Vector2)transform.position + offset, Vector3.down, out hit, distance))
-        {
-            rb.AddForce(jumpForce, ForceMode2D.Impulse);
-            renderer.Jump();
-        }
-
+        isJumping = true;
+        rb.AddForce(jumpForce, ForceMode2D.Impulse);
+        renderer.Jump();
     }
     #endregion
 }

@@ -8,7 +8,7 @@ public class PlayerRenderer : MonoBehaviour
     private static int jumpHash = Animator.StringToHash("jump");
     private static int hitHash = Animator.StringToHash("hit");
     private static int faintHash = Animator.StringToHash("faint");
-    private static int isGroundedHash = Animator.StringToHash("isGrounded");
+    private static int onGroundHash = Animator.StringToHash("onGround");
     #endregion
 
     #region SerializedFields
@@ -33,7 +33,7 @@ public class PlayerRenderer : MonoBehaviour
 
     public void SetIsGrounded(bool IsGrounded)
     {
-        animator.SetBool(isGroundedHash, IsGrounded);
+        animator.SetBool(onGroundHash, IsGrounded);
     }
     #endregion
 }
