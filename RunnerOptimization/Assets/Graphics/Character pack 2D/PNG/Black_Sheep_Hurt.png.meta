@@ -165,27 +165,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Black_Sheep_Hurt_2
-      rect:
-        serializedVersion: 2
-        x: 631
-        y: 227
-        width: 6
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e52462da5812be44bb937fd88bbad925
-      internalID: 1470330132
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Black_Sheep_Hurt_3
       rect:
         serializedVersion: 2
@@ -202,48 +181,6 @@ TextureImporter:
       bones: []
       spriteID: 3b27146ee6bae084dabf239b7ec88696
       internalID: 45598479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Black_Sheep_Hurt_4
-      rect:
-        serializedVersion: 2
-        x: 287
-        y: 211
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c40ed1638f928574ebd79ae1abe7bca9
-      internalID: -1794280232
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Black_Sheep_Hurt_5
-      rect:
-        serializedVersion: 2
-        x: 635
-        y: 213
-        width: 7
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d85d7c30440cadf40b6ac47fb8992e01
-      internalID: -1677071890
       vertices: []
       indices: 
       edges: []

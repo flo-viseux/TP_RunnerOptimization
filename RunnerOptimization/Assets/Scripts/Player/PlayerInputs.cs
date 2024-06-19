@@ -12,16 +12,7 @@ public class PlayerInputs : MonoBehaviour
     public void Jump()
     {
         if (_onJump != null)
-        {
             _onJump.Invoke();
-        }
-    }
-    #endregion
-
-    #region UnityMethods
-    private void Update()
-    {
-        //if (_onJump != null)
     }
     #endregion
 }
