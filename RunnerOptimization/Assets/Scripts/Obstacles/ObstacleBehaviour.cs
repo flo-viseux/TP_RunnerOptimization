@@ -6,15 +6,16 @@ using UnityEngine;
 public class ObstacleBehaviour : MonoBehaviour
 {
     [SerializeField] private float[] _PossibleSpawnHeights;
+    [SerializeField] private bool _IsTrigger;
     private Rigidbody2D _Rb;
     private ObstacleManager _ObstacleManager;
-
+    
     private void Start()
     {
         _Rb = GetComponent<Rigidbody2D>();
         _ObstacleManager = ObstacleManager.Instance;
         int rdInt = Random.Range(0, _PossibleSpawnHeights.Length);
-        transform.position = new Vector2(transform.position.x, _PossibleSpawnHeights[rdInt]);
+        transform.position = new Vector2(_ObstacleManager.ObstacleSpawnPosX, _PossibleSpawnHeights[rdInt]);
     }
 
 
@@ -27,14 +28,28 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
+        if (_IsTrigger) return;
+
+        if (collision.collider.CompareTag("Player"))
         {
-            Destroy(gameObject);
-            //PlayerController.insta;
+            PlayerController.Instance.Hit();
         }
         else if (collision.collider.CompareTag("ObstacleDestroyer"))
         {
-            // Pool Remove
+            _ObstacleManager.Pool.Release(this);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!_IsTrigger) return;
+        if (collision.CompareTag("Player"))
+        {
+            PlayerController.Instance.Hit();
+        }
+        else if (collision.CompareTag("ObstacleDestroyer"))
+        {
+            _ObstacleManager.Pool.Release(this);
         }
     }
 }
