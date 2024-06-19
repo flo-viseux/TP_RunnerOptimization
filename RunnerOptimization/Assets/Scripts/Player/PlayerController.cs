@@ -5,27 +5,39 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region SerializedFields
-    [Header("References")]
-    [SerializeField] private PlayerRenderer renderer = null;
-
-    [SerializeField] private PlayerHealth health = null;
-
-    [SerializeField] private PlayerScore score = null;
-
-    [Header("Self")]
+    [Header("Score")]
+    [SerializeField] private float scoreMultiplicatorCoeff = 1f;
 
     [Header("Jump")]
     [SerializeField] private Rigidbody2D rb = null;
     [SerializeField] private Vector2 jumpForce = new Vector2(0, 5f);
-
-    [SerializeField] private Vector2 offset = Vector2.zero;
-    [SerializeField] private float distance = 0.1f;
-    [SerializeField] private LayerMask layerMask;
     #endregion
 
     #region Attributes
+    private int lifeCount = 3;
+    private float score = 0;
+
     private bool isGrounded = true;
-    private bool isJumping = true;
+    #endregion
+
+    #region Delegates
+    // Jump
+    public delegate void OnJump();
+    public static OnJump _onJump;
+
+    public delegate void OnLand();
+    public static OnLand _onLand;
+
+    // Score
+    public delegate void OnIncreaseScore(float score);
+    public static OnIncreaseScore _onIncreaseScore;
+
+    // Health
+    public delegate void OnHit();
+    public static OnHit _onHit;
+
+    public delegate void OnGameOver();
+    public static OnGameOver _onGameOver;
     #endregion
 
     #region API
@@ -33,32 +45,43 @@ public class PlayerController : MonoBehaviour
 
     public void Hit()
     {
-        health.DecreseLifeCount();
-        renderer.Hit();
+        --lifeCount;
+
+        if (lifeCount > 0)
+        {
+            if (_onHit != null)
+                _onHit.Invoke();
+        }
+        else
+        {
+            GameOver();
+        }
+
     }
     #endregion
 
     #region UnityMethods
     private void Start()
     {
+        lifeCount = 3;
+
         transform.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x + 2, transform.position.y, 0); // Set Player Pos with Camera
 
         PlayerInputs._onJump += Jump;
         SetIsGrounded(true);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (!isGrounded && Physics2D.Raycast((Vector2)transform.position + offset, Vector2.down, distance, layerMask))
-            SetIsGrounded(true);
-        else if (isGrounded && !Physics2D.Raycast((Vector2)transform.position + offset, Vector2.down, distance, layerMask))
-            SetIsGrounded(false);
+        IncreaseScore();
     }
 
-    private void OnDrawGizmos()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay((Vector2)transform.position + offset, Vector2.down * distance);
+        if (isGrounded || collision.gameObject.layer != 3)
+            return;
+
+        SetIsGrounded(true);
     }
     #endregion
 
@@ -66,20 +89,41 @@ public class PlayerController : MonoBehaviour
     private void SetIsGrounded(bool IsGrounded)
     {
         this.isGrounded = IsGrounded;
-        renderer.SetIsGrounded(this.isGrounded);
 
-        if (IsGrounded)
-            isJumping = false;
+        if (!IsGrounded)
+            return;
+
+        if (_onLand != null)
+            _onLand.Invoke();
     }
 
     private void Jump()
     {
-        if (!isGrounded || isJumping)
+        if (!isGrounded)
             return;
 
-        isJumping = true;
+        SetIsGrounded(false);
         rb.AddForce(jumpForce, ForceMode2D.Impulse);
-        renderer.Jump();
+
+        if (_onJump != null)
+            _onJump.Invoke();
+    }
+
+    private void IncreaseScore()
+    {
+        score += scoreMultiplicatorCoeff * Time.deltaTime;
+
+        if (_onIncreaseScore != null)
+            _onIncreaseScore(score);
+    }
+
+    private void GameOver()
+    {
+        if (_onGameOver != null)
+            _onGameOver.Invoke();
+
+        enabled = false;
+        Time.timeScale = 0;
     }
     #endregion
 }
