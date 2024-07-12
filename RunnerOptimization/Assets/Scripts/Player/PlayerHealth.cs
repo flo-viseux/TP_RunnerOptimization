@@ -26,8 +26,8 @@ public class PlayerHealth : MonoBehaviour
     #region API
     public void DecreseLifeCount()
     {
-        --LifeCount;
-        _LifeText.text = LifeCount.ToString();
+        --_LifeCount;
+        _LifeText.text = "Life : " + LifeCount.ToString();
     }
     #endregion
 }

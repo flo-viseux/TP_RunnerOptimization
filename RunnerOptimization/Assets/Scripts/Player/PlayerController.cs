@@ -44,11 +44,12 @@ namespace Managers
         #endregion
 
         private PlayerHealth _PlayerHealth;
+        [SerializeField] private GameObject _GameOverCanvas;
         #region API
 
         public void Hit()
         {
-            if (_PlayerHealth.LifeCount > 0)
+            if (_PlayerHealth.LifeCount > 1)
             {
                 _onHit?.Invoke();
             }
@@ -94,8 +95,8 @@ namespace Managers
             if (!IsGrounded)
                 return;
 
-            if (_onLand != null)
-                _onLand.Invoke();
+
+            _onLand?.Invoke();
         }
 
         private void Jump()
@@ -119,7 +120,7 @@ namespace Managers
         private void GameOver()
         {
             _onGameOver?.Invoke();
-
+            _GameOverCanvas.SetActive(true);
             gameObject.SetActive(false);
             Time.timeScale = 0;
         }
