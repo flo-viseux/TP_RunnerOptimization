@@ -49,15 +49,10 @@ namespace Managers
 
         public void Hit()
         {
-            if (_PlayerHealth.LifeCount > 1)
-            {
-                _onHit?.Invoke();
-            }
-            else
-            {
-                GameOver();
-            }
+            _onHit?.Invoke();
 
+            if (_PlayerHealth.LifeCount < 1)
+                StartCoroutine(GameOver());
         }
         #endregion
 
@@ -71,11 +66,17 @@ namespace Managers
             PlayerInputs._onJump += Jump;
             SetIsGrounded(true);
             _PlayerHealth = GetComponent<PlayerHealth>();
+
+            StartCoroutine(IncreaseScoreCoroutine());
         }
 
-        private void Update()
+        private IEnumerator IncreaseScoreCoroutine()
         {
+            yield return new WaitForEndOfFrame();
+
             IncreaseScore();
+
+            StartCoroutine(IncreaseScoreCoroutine());
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -117,11 +118,13 @@ namespace Managers
             _onIncreaseScore?.Invoke(score);
         }
 
-        private void GameOver()
+        private IEnumerator GameOver()
         {
             _onGameOver?.Invoke();
+            
+            yield return null;
+
             _GameOverCanvas.SetActive(true);
-            gameObject.SetActive(false);
             Time.timeScale = 0;
         }
         #endregion

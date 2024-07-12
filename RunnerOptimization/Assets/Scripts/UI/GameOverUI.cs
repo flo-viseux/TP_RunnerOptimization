@@ -9,5 +9,6 @@ public class GameOverUI : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 }

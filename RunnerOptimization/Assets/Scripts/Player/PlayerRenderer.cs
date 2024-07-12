@@ -16,13 +16,20 @@ public class PlayerRenderer : MonoBehaviour
     #endregion
 
     #region UnityMethods
-    private void Start()
+    private void OnEnable()
     {
-        animator = GetComponentInChildren<Animator>();
         PlayerController._onHit += Hit;
         PlayerController._onJump += Jump;
         PlayerController._onGameOver += Faint;
         PlayerController._onLand += Land;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController._onHit -= Hit;
+        PlayerController._onJump -= Jump;
+        PlayerController._onGameOver -= Faint;
+        PlayerController._onLand -= Land;
     }
     #endregion
 
