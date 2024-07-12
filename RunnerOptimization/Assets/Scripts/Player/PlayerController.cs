@@ -43,16 +43,14 @@ namespace Managers
         public static OnGameOver _onGameOver;
         #endregion
 
+        private PlayerHealth _PlayerHealth;
         #region API
 
         public void Hit()
         {
-            --lifeCount;
-
-            if (lifeCount > 0)
+            if (_PlayerHealth.LifeCount > 0)
             {
-                if (_onHit != null)
-                    _onHit.Invoke();
+                _onHit?.Invoke();
             }
             else
             {
@@ -71,6 +69,7 @@ namespace Managers
 
             PlayerInputs._onJump += Jump;
             SetIsGrounded(true);
+            _PlayerHealth = GetComponent<PlayerHealth>();
         }
 
         private void Update()
@@ -107,22 +106,19 @@ namespace Managers
             SetIsGrounded(false);
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
 
-            if (_onJump != null)
-                _onJump.Invoke();
+            _onJump?.Invoke();
         }
 
         private void IncreaseScore()
         {
             score += scoreMultiplicatorCoeff * Time.deltaTime;
 
-            if (_onIncreaseScore != null)
-                _onIncreaseScore(score);
+            _onIncreaseScore?.Invoke(score);
         }
 
         private void GameOver()
         {
-            if (_onGameOver != null)
-                _onGameOver.Invoke();
+            _onGameOver?.Invoke();
 
             gameObject.SetActive(false);
             Time.timeScale = 0;

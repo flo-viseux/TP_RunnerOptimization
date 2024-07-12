@@ -25,7 +25,6 @@ public class PoolingSystem<T, J> where T : MonoBehaviour where J : Enum
         foreach(KeyValuePair<J, Tuple<T, int>> pair in poolPrefabs)
         {
             _PoolDictionary.Add(pair.Key, new List<T>());
-            Debug.Log(_PoolDictionary[pair.Key].Count);
             for (int i = 0; i < pair.Value.Item2; i++)
             {
                 _PoolDictionary[pair.Key].Add(UnityEngine.Object.Instantiate(poolPrefabs[pair.Key].Item1, _PoolFolder));

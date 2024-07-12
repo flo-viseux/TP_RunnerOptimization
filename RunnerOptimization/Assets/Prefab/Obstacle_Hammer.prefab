@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954a55db36d952b4c8009a03caee521b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _RotateSpeed: 50
+  _RotateSpeed: 120
 --- !u!61 &4735379424590516024
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2850487056723817146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
