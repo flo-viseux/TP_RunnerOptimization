@@ -207,37 +207,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &104927091
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 104927092}
-  m_Layer: 0
-  m_Name: Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &104927092
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 104927091}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.9992082, y: -2.9084716, z: 0.024445716}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &110939030
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +810,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 259205833}
-  - component: {fileID: 259205832}
   - component: {fileID: 259205831}
   - component: {fileID: 259205830}
   m_Layer: 0
@@ -923,58 +891,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!212 &259205832
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259205829}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!4 &259205833
 Transform:
   m_ObjectHideFlags: 0
@@ -983,12 +899,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259205829}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -16.26, y: 0.1023, z: 0}
   m_LocalScale: {x: 1, y: 9.681401, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 276022564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &272339839
 GameObject:
@@ -1067,8 +983,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 276022564}
+  - component: {fileID: 276022565}
   m_Layer: 0
-  m_Name: ObstacleSpawner
+  m_Name: ObstacleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1086,9 +1003,90 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1083441947}
+  - {fileID: 1573362678}
+  - {fileID: 259205833}
   m_Father: {fileID: 1438592794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &276022565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276022563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5da67112ed7fa441b635a87bba23b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ObstacleSpawnPosX: 10
+  _ObstacleBaseSpeed: 100
+  _ObstacleEvolutionSpeed: 100
+  _ObstacleSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _TimeToReachMaxSpeed: 200
+  _ObstacleBaseSpawnTimer: 7
+  _ObstacleSpawnTimerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.016288841
+      outSlope: -0.016288841
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.3948842
+    - serializedVersion: 3
+      time: 0.9777832
+      value: 0.114780426
+      inSlope: -0.54028964
+      outSlope: -0.54028964
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18750452
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _TimeToReachMinSpawnTimer: 200
+  _ObstaclePoolElements:
+  - Type: 0
+    BaseNumberOfElements: 10
+    ObstaclePrefab: {fileID: 5820482224546575457, guid: cdeeb38a91be26b4889209af0ed926cb, type: 3}
+  - Type: 1
+    BaseNumberOfElements: 10
+    ObstaclePrefab: {fileID: 5820482224546575457, guid: 8fb74bcc31071ba4aaf8b8ffd577de41, type: 3}
+  - Type: 2
+    BaseNumberOfElements: 10
+    ObstaclePrefab: {fileID: 5820482224546575457, guid: c612dfe95aecd3242b38dc3ca7d70016, type: 3}
+  _PoolFolder: {fileID: 1083441947}
+  _PoolActiveFolder: {fileID: 1573362678}
 --- !u!1 &340938226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,12 +2392,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083441946}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.2457614, y: -0.79244334, z: 0.024445716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 276022564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099266441
 GameObject:
@@ -3001,7 +2999,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1438592794}
-  - component: {fileID: 1438592795}
   m_Layer: 0
   m_Name: === Gameplay ===
   m_TagString: Untagged
@@ -3023,88 +3020,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2105363297}
-  - {fileID: 1776224366}
   - {fileID: 276022564}
+  - {fileID: 1776224366}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1438592795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438592793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5da67112ed7fa441b635a87bba23b49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ObstacleSpawnPosX: 10
-  _ObstacleBaseSpeed: 100
-  _ObstacleEvolutionSpeed: 100
-  _ObstacleSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _TimeToReachMaxSpeed: 200
-  _ObstacleBaseSpawnTimer: 7
-  _ObstacleSpawnTimerCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -0.016288841
-      outSlope: -0.016288841
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.3948842
-    - serializedVersion: 3
-      time: 0.9777832
-      value: 0.114780426
-      inSlope: -0.54028964
-      outSlope: -0.54028964
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.18750452
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _TimeToReachMinSpawnTimer: 200
-  _ObstaclePoolElements:
-  - Type: 0
-    BaseNumberOfElements: 10
-    ObstaclePrefab: {fileID: 5820482224546575457, guid: cdeeb38a91be26b4889209af0ed926cb, type: 3}
-  - Type: 1
-    BaseNumberOfElements: 10
-    ObstaclePrefab: {fileID: 5820482224546575457, guid: 8fb74bcc31071ba4aaf8b8ffd577de41, type: 3}
-  - Type: 2
-    BaseNumberOfElements: 10
-    ObstaclePrefab: {fileID: 5820482224546575457, guid: c612dfe95aecd3242b38dc3ca7d70016, type: 3}
-  _PoolFolder: {fileID: 1083441947}
-  _PoolActiveFolder: {fileID: 1573362678}
 --- !u!1 &1471398973
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,12 +3216,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573362677}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.2457614, y: -0.79244334, z: 0.024445716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 276022564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1639775848
 GameObject:
@@ -4210,9 +4129,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 104927092}
   - {fileID: 340938227}
   - {fileID: 1438592794}
-  - {fileID: 1083441947}
-  - {fileID: 1573362678}
-  - {fileID: 259205833}

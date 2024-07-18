@@ -17,7 +17,6 @@ namespace Managers
         #endregion
 
         #region Attributes
-        private int lifeCount = 3;
         private float score = 0;
 
         private bool isGrounded = true;
@@ -59,8 +58,6 @@ namespace Managers
         #region UnityMethods
         private void Start()
         {
-            lifeCount = 3;
-
             transform.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x + 2, transform.position.y, 0); // Set Player Pos with Camera
 
             PlayerInputs._onJump += Jump;
