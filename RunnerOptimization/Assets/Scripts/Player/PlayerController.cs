@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Managers
@@ -54,7 +52,11 @@ namespace Managers
             _onHit?.Invoke();
 
             if (_PlayerHealth.LifeCount < 1)
-                StartCoroutine(GameOver());
+            {
+                _onGameOver?.Invoke();
+                _GameOverCanvas.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
         #endregion
 
@@ -117,16 +119,6 @@ namespace Managers
             score += scoreMultiplicatorCoeff * Time.deltaTime;
 
             _onIncreaseScore?.Invoke(score);
-        }
-
-        private IEnumerator GameOver()
-        {
-            _onGameOver?.Invoke();
-            
-            yield return null;
-
-            _GameOverCanvas.SetActive(true);
-            Time.timeScale = 0;
         }
         #endregion
     }

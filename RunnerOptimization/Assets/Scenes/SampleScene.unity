@@ -3859,30 +3859,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1438592794}
     m_Modifications:
-    - target: {fileID: 84062167995912965, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 84062167995912965, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
-      propertyPath: m_GravityScale
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221636631265324360, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
-      propertyPath: m_Size.x
-      value: 1.9513016
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221636631265324360, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
-      propertyPath: m_Size.y
-      value: 1.2420225
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221636631265324360, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.05594635
-      objectReference: {fileID: 0}
-    - target: {fileID: 3221636631265324360, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.07446718
-      objectReference: {fileID: 0}
     - target: {fileID: 3363280331832468436, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
       propertyPath: _LifeText
       value: 
@@ -3937,7 +3913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7656466829518350531, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
       propertyPath: jumpForce.y
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 7656466829518350531, guid: d577fd13e45527f43bd1f6412ed5fc09, type: 3}
       propertyPath: _GameOverCanvas
