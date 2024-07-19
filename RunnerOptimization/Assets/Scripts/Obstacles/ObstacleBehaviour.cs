@@ -28,8 +28,6 @@ public class ObstacleBehaviour : MonoBehaviour
     {
         yield return new WaitUntil(() => transform.position.x < -15);
 
-        Debug.Log("Release");
-
         _ObstacleManager.Pool.Release(this);
     }
     
