@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 439922776671462366, guid: b7cb245192fc54246bfa315405180ec1, type: 3}
       propertyPath: _PossibleSpawnHeights.Array.data[0]
-      value: -2.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 439922776671462366, guid: b7cb245192fc54246bfa315405180ec1, type: 3}
       propertyPath: _PossibleSpawnHeights.Array.data[1]

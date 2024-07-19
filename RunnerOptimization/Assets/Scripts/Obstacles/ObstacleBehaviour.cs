@@ -11,16 +11,28 @@ public class ObstacleBehaviour : MonoBehaviour
     private Rigidbody2D _Rb;
     private ObstacleManager _ObstacleManager;
     
-    private void Start()
+    private void Awake()
     {
         _Rb = GetComponent<Rigidbody2D>();
         _ObstacleManager = ObstacleManager.Instance;
-        int rdInt = Random.Range(0, _PossibleSpawnHeights.Length);
-        transform.position = new Vector2(_ObstacleManager.ObstacleSpawnPosX, _PossibleSpawnHeights[rdInt]);
     }
 
+    private void OnEnable()
+    {
+        int rdInt = Random.Range(0, _PossibleSpawnHeights.Length);
+        transform.position = new Vector2(_ObstacleManager.ObstacleSpawnPosX, _PossibleSpawnHeights[rdInt]);
+        StartCoroutine(Release());
+    }
 
+    private IEnumerator Release()
+    {
+        yield return new WaitUntil(() => transform.position.x < -15);
 
+        Debug.Log("Release");
+
+        _ObstacleManager.Pool.Release(this);
+    }
+    
     private void FixedUpdate()
     {
         float speed = Time.deltaTime * _ObstacleManager.ObstacleSpeed;
@@ -35,10 +47,6 @@ public class ObstacleBehaviour : MonoBehaviour
         {
             PlayerController.Instance.Hit();
         }
-        else if (collision.collider.CompareTag("ObstacleDestroyer"))
-        {
-            _ObstacleManager.Pool.Release(this);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,10 +55,6 @@ public class ObstacleBehaviour : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerController.Instance.Hit();
-        }
-        else if (collision.CompareTag("ObstacleDestroyer"))
-        {
-            _ObstacleManager.Pool.Release(this);
         }
     }
 }

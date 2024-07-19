@@ -12,14 +12,19 @@ namespace Managers
         [SerializeField] private float scoreMultiplicatorCoeff = 1f;
 
         [Header("Jump")]
-        [SerializeField] private Rigidbody2D rb = null;
         [SerializeField] private Vector2 jumpForce = new Vector2(0, 5f);
+
+        [SerializeField] private GameObject _GameOverCanvas;
         #endregion
 
         #region Attributes
         private float score = 0;
 
         private bool isGrounded = true;
+        private bool isJumping = false;
+
+        private Rigidbody2D rb = null;
+        private PlayerHealth _PlayerHealth = null;
         #endregion
 
         #region Delegates
@@ -42,8 +47,6 @@ namespace Managers
         public static OnGameOver _onGameOver;
         #endregion
 
-        private PlayerHealth _PlayerHealth;
-        [SerializeField] private GameObject _GameOverCanvas;
         #region API
 
         public void Hit()
@@ -58,11 +61,12 @@ namespace Managers
         #region UnityMethods
         private void Start()
         {
-            transform.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x + 2, transform.position.y, 0); // Set Player Pos with Camera
+            transform.position = new Vector3(Camera.main.ViewportToWorldPoint(Vector3.zero).x + 3, transform.position.y, 0); // Set Player Pos with Camera
 
             PlayerInputs._onJump += Jump;
             SetIsGrounded(true);
             _PlayerHealth = GetComponent<PlayerHealth>();
+            rb = GetComponent<Rigidbody2D>();
 
             StartCoroutine(IncreaseScoreCoroutine());
         }
@@ -93,18 +97,18 @@ namespace Managers
             if (!IsGrounded)
                 return;
 
-
             _onLand?.Invoke();
+            isJumping = false;
         }
 
         private void Jump()
         {
-            if (!isGrounded)
+            if (!isGrounded || isJumping)
                 return;
 
+            isJumping = true;
             SetIsGrounded(false);
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
-
             _onJump?.Invoke();
         }
 

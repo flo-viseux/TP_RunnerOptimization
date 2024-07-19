@@ -33,19 +33,18 @@ public class PoolingSystem<T, J> where T : MonoBehaviour where J : Enum
         }
     }
 
-    public T Get(J type, Vector3 position)
+    public T Get(J type)
     {
         foreach(var item in _PoolDictionary[type])
         {
             if (!item.gameObject.activeInHierarchy)
             {
-                item.transform.position = position;
                 item.gameObject.SetActive(true);
                 item.transform.parent = _ActivePoolFolder.transform;
                 return item;
             }
         }
-        _PoolDictionary[type].Add(UnityEngine.Object.Instantiate(_PoolPrefabs[type],position, Quaternion.identity, _ActivePoolFolder));
+        _PoolDictionary[type].Add(UnityEngine.Object.Instantiate(_PoolPrefabs[type], _ActivePoolFolder));
         return _PoolDictionary[type].Last();
     }
 

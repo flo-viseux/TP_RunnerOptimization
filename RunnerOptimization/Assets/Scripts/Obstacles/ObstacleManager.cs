@@ -93,7 +93,7 @@ public partial class ObstacleManager : Singleton<ObstacleManager>
         {
             yield return new WaitForSeconds(_ObstacleSpawnTimer);
             EObstacleTypes type = (EObstacleTypes)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(EObstacleTypes)).Length);
-            _Pool.Get(type, new Vector3(10, 0, 0));
+            _Pool.Get(type);
         }
     }
 }
